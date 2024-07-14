@@ -44,8 +44,8 @@ This repository contains a microservice built using Node.js that leverages Rabbi
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/Chandore998/microservice.git
+    cd microservice
     ```
 
 2. Install dependencies:
