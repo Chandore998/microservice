@@ -1,7 +1,3 @@
-Here's a template for a README file for your Node.js microservice project that uses RabbitMQ and Kafka:
-
----
-
 # Node.js Microservice with RabbitMQ and Kafka
 
 This repository contains a microservice built using Node.js that leverages RabbitMQ and Kafka for messaging and event streaming. The microservice architecture ensures scalability, reliability, and ease of maintenance, making it suitable for modern distributed systems.
@@ -13,7 +9,6 @@ This repository contains a microservice built using Node.js that leverages Rabbi
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Configuration](#configuration)
   - [Running the Service](#running-the-service)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -40,6 +35,8 @@ This repository contains a microservice built using Node.js that leverages Rabbi
 
 - Node.js (version x.x.x)
 - RabbitMQ (version x.x.x)
+- Erlang (version x.x.x)
+- RabbitMQ Server (version x.x.x)
 - Kafka (version x.x.x)
 - Docker (optional, for containerized deployment)
 
@@ -55,16 +52,6 @@ This repository contains a microservice built using Node.js that leverages Rabbi
     ```bash
     npm install
     ```
-
-### Configuration
-
-1. Configure RabbitMQ and Kafka:
-    - Update `config/rabbitmq-config.json` with your RabbitMQ settings.
-    - Update `config/kafka-config.json` with your Kafka settings.
-
-2. Configure environment variables:
-    - Create a `.env` file in the root directory.
-    - Add the necessary environment variables as specified in the `.env.example` file.
 
 ### Running the Service
 
