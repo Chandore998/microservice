@@ -1,11 +1,9 @@
 const amqp = require("amqplib")
+let channel , connection 
 
 async function producerMessage(queue , payload){
-    try{
-        const { channel , connection } = await connectRabbitMQ()
-        channel.assertQueue(queue , { durable: false })
-        channel.sendToQueue(queue, Buffer.from(JSON.stringify(payload)));
-        await closeConnection(connection,channel)
+    try{       
+       return channel.sendToQueue(queue, Buffer.from(JSON.stringify(payload)));
     }
     catch(err){
         console.log('Error sending message to RabbitMQ:', err);
@@ -13,13 +11,18 @@ async function producerMessage(queue , payload){
     }
 }
 
-async function connectRabbitMQ(){
+async function connectRabbitMQ(queue){
     try{
-        const connection  = await amqp.connect('amqp://localhost');
-        const channel  = await connection.createChannel();
-        return {channel , connection }
+        connection  = await amqp.connect('amqp://localhost');
+        channel  = await connection.createChannel();
+        if(channel){
+            channel.assertQueue(queue , { durable: false })
+        }
     }
     catch(err){
+        if(connection || channel){
+            await closeConnection(connection,channel)
+        }
         console.warn(err);
     }
 }
