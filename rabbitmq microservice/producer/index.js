@@ -1,12 +1,22 @@
 const express = require("express")
 const app = express()
-const { connectRabbitMQ } = require('./producer.js');
 
+/* 
+       DEFAULT APPROCH 
+const { connectRabbitMQ } = require('./producer.js');
 connectRabbitMQ("myQueue").catch(err =>{
   console.error('Failed to connect to RabbitMQ:', err.message);
   process.exit(1);
 })
 
+*/
+
+const { directConnectRabbitMQ } = require('./producer.js');
+
+directConnectRabbitMQ("myQueue2").catch(err =>{
+  console.error('Failed to connect to RabbitMQ:', err.message);
+  process.exit(1);
+})
 
 app.use(express.json({limit:'50mb'}));
 
