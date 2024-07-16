@@ -8,7 +8,8 @@ exports.sendNotification = async function(req,res) {
 
        //  Direct Exchange Approach
         const exchange = 'direct_hello_world';
-        const queue = `myQueue2_routing_key`
+        // const queue = `myQueue2_routing_key`
+        const queue = `myQueue3_routing_key`
         await directProducerMessage(exchange, queue, req.body)
         
         res.status(200).json({ message : "Notification send to consumer"})
