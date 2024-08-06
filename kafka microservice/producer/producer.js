@@ -13,7 +13,20 @@ async function initializationKafkaInstance(){
             logLevel: logLevel.ERROR
         })
         kafka.logger().setLogLevel(logLevel.WARN)
-        const producers = kafka.producer({ createPartitioner: Partitioners.LegacyPartitioner })
+            // default partitioner which is two partition
+        // const producers = kafka.producer({ createPartitioner: Partitioners.DefaultPartitioner  })
+        
+        const MyPartitioner = () => {
+            return ({ topic, partitionMetadata, message }) => {
+              // Example logic: use a hash of the key to determine the partition
+              const key = message.key;
+              const partitionCount = partitionMetadata.length;
+              const hash = key ? key.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) : 0;
+              return hash % partitionCount;
+            };
+        };
+        const producers = kafka.producer({ createPartitioner: MyPartitioner  })
+       
         await producers.connect()
         producerInstance = producers; 
         return producerInstance;
@@ -38,7 +51,6 @@ async function getProducer() {
     if (!producerInstance) {
         await initializationKafkaInstance();
     }
-    console.log(producerInstance)
     return producerInstance;
 }
 

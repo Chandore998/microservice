@@ -1,8 +1,9 @@
 const express = require("express")
 const app = express()
+require('dotenv').config()
 
-const { initKafka } = require("./consumer.js")
-initKafka()
+const { getConsumer } = require("./consumer.js")
+getConsumer()
 
 
 
