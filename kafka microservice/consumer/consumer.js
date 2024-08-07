@@ -14,7 +14,7 @@ async function initializationKafkaInstance(){
 
         let consumer = kafka.consumer({ groupId: 'test-group' })
         await consumer.connect()
-        await consumer.subscribe({ topic: 'test-topic', fromBeginning: true })
+        await consumer.subscribe({ topic: 'my-topic', fromBeginning: true })
         consumerInstance = consumer; 
         await getReceiveMessage()
 

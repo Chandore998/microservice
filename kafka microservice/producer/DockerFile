@@ -1,0 +1,7 @@
+From node:20-alpine3.19 AS base
+
+copy  . .
+
+RUN npm install
+
+ENTRYPOINT ["node" , "index.js"]
